@@ -13,4 +13,10 @@
     <select id="findUserById" resultType="com.zsc.mnc.shop.model.User">
         select * from `user` where id = #{id}
     </select>
+
+    <select id="getAllUsers" resultType="com.zsc.mnc.shop.model.User">
+        select *from `user`;
+    </select>
+
+
 </mapper>
