@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--这里的namespace一定要写对应的mapper类的全名-->
+<mapper namespace="com.zsc.mnc.shop.dao.UserMapper">
+
+    <!--因为user是数据库关键字,所以用这个``包裹一下-->
+    <!--resultType就表示查出来的结果跟什么类映射,
+    只要数据库中的名字和这个类中的字段名字一一对应,
+    就能成功映射到这个类中-->
+    <!--id一定要对应mapper类的命名-->
+    <select id="findUserById" resultType="com.zsc.mnc.shop.model.User">
+        select * from `user` where id = #{id}
+    </select>
+</mapper>

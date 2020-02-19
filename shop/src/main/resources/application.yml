@@ -1,0 +1,14 @@
+server:
+  port: 8088 #这个是启动的端口号
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver #这个是连接数据库的驱动名称
+    url: jdbc:mysql://localhost:3306/aaaa?setUnicode=true&characterEncoding=utf8&serverTimezone=UTC #这里的aaaa是数据库名称,其他不用改
+    username: root  #数据库账号
+    password: "@mnc2017317725" #数据库密码,最好用双引号包裹着,不然特殊字符无法识别
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml  #这个是mapper的xml文件路径,不配置的话无法识别这里的文件
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #这是配置执行SQL的时候在控制台打印SQL语句,方便查看哪里出错了
