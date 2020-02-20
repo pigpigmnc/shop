@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Date;
 
 @RestController
-@RequestMapping(value = "/youlike")
+@RequestMapping(value = "/product")
 public class ProductController {
 
     @Autowired
