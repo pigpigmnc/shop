@@ -6,6 +6,7 @@ import com.zsc.mnc.shop.service.ProductService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service("productService")
 public class ProductServiceImpl implements ProductService {
@@ -13,8 +14,11 @@ public class ProductServiceImpl implements ProductService {
     private ProductDao productDao;
 
     @Override
-    public void addProduct(Product product) {
-        productDao.addProduct(product);
+    public int addProduct(Product product) {
+       return productDao.addProduct(product);
+    }
 
+    public List<Product> allProduct(){
+       return productDao.allProduct();
     }
 }

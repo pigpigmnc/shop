@@ -9,4 +9,10 @@
          insert into `product`(`name`,subTitle,originalPrice,promotePrice,stock,cid,createDate,saleCount) values
           (#{name},#{subTitle},#{originalPrice},#{promotePrice},#{stock},#{cid},#{createDate},#{saleCount})
     </insert>
+
+    <select id="allProduct" resultType="com.zsc.mnc.shop.model.Product">
+        select *from `product`;
+    </select>
+
+
 </mapper>
