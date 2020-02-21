@@ -6,6 +6,7 @@
 <mapper namespace="com.zsc.mnc.shop.dao.ProductMapper">
 
     <select id="addProduct" resultType="com.zsc.mnc.shop.model.Product">
-         insert into `product`（subTitle,originalPrice,promotePrice,stock,cid,createDate,saleCount）values （#{subTitle},#{originalPrice},#{promotePrice},#{stock},#{cid},#{createDate},#{saleCount}）
+         insert into `product`(subTitle,originalPrice,promotePrice,stock,cid,createDate,saleCount) values
+          (#{subTitle},#{originalPrice},#{promotePrice},#{stock},#{cid},#{createDate},#{saleCount})
     </select>
 </mapper>
