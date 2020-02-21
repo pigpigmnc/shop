@@ -5,7 +5,7 @@
 <!--这里的namespace一定要写对应的mapper类的全名-->
 <mapper namespace="com.zsc.mnc.shop.dao.ProductMapper">
 
-    <select id="addProdct" resultType="com.zsc.mnc.shop.model.Product">
-         insert into `product`（id,subTitle,originalPrice,promotePrice,stock,cid,createDate,saleCount）values （#{id},#{subTitle},#{originalPrice},#{promotePrice},#{stock},#{cid},#{createDate},#{saleCount}）
+    <select id="addProduct" resultType="com.zsc.mnc.shop.model.Product">
+         insert into `product`（subTitle,originalPrice,promotePrice,stock,cid,createDate,saleCount）values （#{subTitle},#{originalPrice},#{promotePrice},#{stock},#{cid},#{createDate},#{saleCount}）
     </select>
 </mapper>
