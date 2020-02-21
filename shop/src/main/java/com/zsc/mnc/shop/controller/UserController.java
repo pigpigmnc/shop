@@ -19,8 +19,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public List<User> youlike() {
+    @RequestMapping(value = "/userList", method = RequestMethod.POST)
+    public List<User> getAllUser() {
         List<User> list = new ArrayList<>();
         list = userService.getAllUsers();
         return list;

@@ -18,27 +18,45 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    @RequestMapping(value = "/addProduct",method = RequestMethod.POST)
     public ResponseResult addProduct(Product product){
-         int a;
         ResponseResult result = new ResponseResult();
         product.setCreateDate(new Date());
-        //int a=productService.addProduct(product);
-        //result.setTotal((long) a);
-        if(productService.addProduct(product)==1) {
-            //a = productService.addProduct(product);
-
+        int a=productService.addProduct(product);
+        if(a>0) {
             result.setMsg(true);
-            //result.setTotal((long) a);
+            result.setTotal((long) a);
         }
-        else
-             result.setMsg(false);
+        else result.setMsg(false);
+
         List<Product> list=new ArrayList<>();
-        list=productService.allProduct();
+        list=productService.getAllProduct();
         result.setData(list);
         return result;
 
     }
+
+    @RequestMapping(value = "/productList",method = RequestMethod.POST)
+    public List<Product> getAllProduct(){
+        List<Product> list=new ArrayList<>();
+        list=productService.getAllProduct();
+        return list;
+
+    }
+
+    @RequestMapping(value = "/modifyProduct",method = RequestMethod.POST)
+    public ResponseResult modifyProduct(Product product){
+        ResponseResult result=new ResponseResult();
+        int a=productService.modifyProduct(product);
+        if(a>0) {
+            result.setMsg(true);
+            result.setTotal((long) a);
+        }
+        else result.setMsg(false);
+        return result;
+
+    }
+
 
 
 }

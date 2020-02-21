@@ -11,11 +11,11 @@
     就能成功映射到这个类中-->
     <!--id一定要对应mapper类的命名-->
     <select id="findUserById" resultType="com.zsc.mnc.shop.model.User">
-        select * from `user` where id = #{id}
+        select * from `users` where id = #{id}
     </select>
 
     <select id="getAllUsers" resultType="com.zsc.mnc.shop.model.User">
-        select *from `user`;
+        select *from `users`;
     </select>
 
 

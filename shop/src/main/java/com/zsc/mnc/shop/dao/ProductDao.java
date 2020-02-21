@@ -7,6 +7,7 @@ import java.util.List;
 
 @Component
 public interface ProductDao {
-   public int addProduct(Product product);
-   public List<Product> allProduct();
+    int addProduct(Product product);
+    List<Product> getAllProduct();
+    int modifyProduct(Product product);
 }
