@@ -6,6 +6,7 @@ import com.zsc.mnc.shop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -29,18 +30,24 @@ public class ProductController {
         }
         else result.setMsg(false);
 
-        List<Product> list=new ArrayList<>();
-        list=productService.getAllProduct();
-        result.setData(list);
+//        List<Product> list=new ArrayList<>();
+//        list=productService.getAllProduct();
+//        result.setData(list);
         return result;
 
     }
 
     @RequestMapping(value = "/productList",method = RequestMethod.POST)
-    public List<Product> getAllProduct(){
+    public ResponseResult getAllProduct(){
+        ResponseResult result=new ResponseResult();
         List<Product> list=new ArrayList<>();
         list=productService.getAllProduct();
-        return list;
+        if(list.size()>0)
+            result.setMsg(true);
+        else result.setMsg(false);
+        result.setTotal((long)list.size());
+        result.setData(list);
+        return result;
 
     }
 
@@ -54,6 +61,22 @@ public class ProductController {
         }
         else result.setMsg(false);
         return result;
+
+    }
+
+    @RequestMapping(value = "/fuzzyQuery",method = RequestMethod.POST)
+    public ResponseResult fuzzyQuery(@RequestParam("name")String name){
+        ResponseResult result=new ResponseResult();
+        List<Product> list=new ArrayList<>();
+        list=productService.fuzzyQuery(name);
+        if(list.size()>0)
+            result.setMsg(true);
+        else result.setMsg(false);
+        result.setData(list);
+        result.setTotal((long)list.size());
+
+        return result;
+
 
     }
 

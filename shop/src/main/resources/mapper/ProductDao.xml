@@ -15,10 +15,14 @@
     </select>
 
     <update id="modifyProduct" parameterType="com.zsc.mnc.shop.model.Product">
-            update `product` set`name`=#{name},subTitle=#{subTitle},originalPrice=#{originalPrice},promotePrice=#{promotePrice},
+        update `product` set`name`=#{name},subTitle=#{subTitle},originalPrice=#{originalPrice},promotePrice=#{promotePrice},
             stock=#{stock},saleCount=#{saleCount} where id=#{id}
 
     </update>
+
+    <select id="fuzzyQuery" parameterType="com.zsc.mnc.shop.model.Product">
+        select *from product where name like "%"#{name}"%"
+    </select>
 
 
 

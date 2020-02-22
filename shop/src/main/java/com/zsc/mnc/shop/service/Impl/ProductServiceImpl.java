@@ -4,6 +4,7 @@ import com.zsc.mnc.shop.dao.ProductDao;
 import com.zsc.mnc.shop.model.Product;
 import com.zsc.mnc.shop.service.ProductService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -24,5 +25,9 @@ public class ProductServiceImpl implements ProductService {
 
     public int modifyProduct(Product product){
         return productDao.modifyProduct(product);
+    }
+
+    public List<Product> fuzzyQuery(String name){
+        return productDao.fuzzyQuery(name);
     }
 }
