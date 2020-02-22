@@ -12,5 +12,6 @@ public interface ProductDao {
     List<Product> getAllProduct();
     int modifyProduct(Product product);
     List<Product> fuzzyQuery(String name);
+    int deleteProduct(long id);
 
 }

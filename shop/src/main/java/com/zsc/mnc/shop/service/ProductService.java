@@ -1,6 +1,7 @@
 package com.zsc.mnc.shop.service;
 
 import com.zsc.mnc.shop.model.Product;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -10,4 +11,5 @@ public interface ProductService {
     List<Product> getAllProduct();
     int modifyProduct(Product product);
     List<Product> fuzzyQuery(String name);
+    int deleteProduct(long id);
 }

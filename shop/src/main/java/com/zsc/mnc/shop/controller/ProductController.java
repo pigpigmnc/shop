@@ -3,6 +3,7 @@ package com.zsc.mnc.shop.controller;
 import com.zsc.mnc.shop.model.Product;
 import com.zsc.mnc.shop.model.ResponseResult;
 import com.zsc.mnc.shop.service.ProductService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,19 +38,23 @@ public class ProductController {
 
     }
 
+
     @RequestMapping(value = "/productList",method = RequestMethod.POST)
     public ResponseResult getAllProduct(){
         ResponseResult result=new ResponseResult();
         List<Product> list=new ArrayList<>();
         list=productService.getAllProduct();
-        if(list.size()>0)
+        if(list.size()>0){
             result.setMsg(true);
+            result.setTotal((long)list.size());
+            result.setData(list);
+        }
         else result.setMsg(false);
-        result.setTotal((long)list.size());
-        result.setData(list);
+
         return result;
 
     }
+
 
     @RequestMapping(value = "/modifyProduct",method = RequestMethod.POST)
     public ResponseResult modifyProduct(Product product){
@@ -64,21 +69,38 @@ public class ProductController {
 
     }
 
+
     @RequestMapping(value = "/fuzzyQuery",method = RequestMethod.POST)
     public ResponseResult fuzzyQuery(@RequestParam("name")String name){
         ResponseResult result=new ResponseResult();
         List<Product> list=new ArrayList<>();
         list=productService.fuzzyQuery(name);
-        if(list.size()>0)
+        if(list.size()>0){
             result.setMsg(true);
+            result.setTotal((long)list.size());
+            result.setData(list);
+        }
         else result.setMsg(false);
-        result.setData(list);
-        result.setTotal((long)list.size());
 
         return result;
 
-
     }
+
+
+    @RequestMapping(value = "/deleteProduct",method = RequestMethod.POST)
+    public ResponseResult deleteProduct(@Param("id")long id){
+        ResponseResult result=new ResponseResult();
+        int a=productService.deleteProduct(id);
+        if(a>0){
+            result.setMsg(true);
+            result.setTotal((long) a);
+        }
+        else result.setMsg(false);
+
+        return result;
+    }
+
+
 
 
 

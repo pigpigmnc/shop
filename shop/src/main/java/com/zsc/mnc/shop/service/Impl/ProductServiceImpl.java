@@ -30,4 +30,8 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> fuzzyQuery(String name){
         return productDao.fuzzyQuery(name);
     }
+
+    public int deleteProduct(long id){
+        return productDao.deleteProduct(id);
+    }
 }
