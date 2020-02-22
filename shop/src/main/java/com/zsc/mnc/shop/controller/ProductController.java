@@ -93,6 +93,7 @@ public class ProductController {
         int a=productService.deleteProduct(id);
         if(a>0){
             result.setMsg(true);
+
             result.setTotal((long) a);
         }
         else result.setMsg(false);
