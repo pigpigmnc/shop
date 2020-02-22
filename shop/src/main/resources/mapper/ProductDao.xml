@@ -20,7 +20,7 @@
 
     </update>
 
-    <select id="fuzzyQuery" parameterType="com.zsc.mnc.shop.model.Product">
+    <select id="fuzzyQuery" resultType="com.zsc.mnc.shop.model.Product">
         select *from product where name like "%"#{name}"%"
     </select>
 
