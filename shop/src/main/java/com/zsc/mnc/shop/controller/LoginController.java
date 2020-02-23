@@ -96,7 +96,7 @@ public class LoginController {
             else
             {
                 ResponseResult result=new ResponseResult();
-                result.setMsg("注册失败");
+                result.setMsg("注册失败，用户名已存在");
                 return  result;
             }
         }

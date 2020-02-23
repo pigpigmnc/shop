@@ -36,4 +36,10 @@ public class UserServiceImpl implements UserService {
         return userDao.queryUser(username,password);
     }
 
+    public int umodifyUser(User user){
+        return userDao.umodifyUser(user);
+    }
+
+
+
 }

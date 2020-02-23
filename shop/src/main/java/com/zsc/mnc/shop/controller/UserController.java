@@ -20,39 +20,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
-//    @RequestMapping(value = "/register", method = RequestMethod.POST)
-//    public ResponseResult register(User user){
-//        ResponseResult result=new ResponseResult();
-//        user.setRegisterDate(new Date());
-//        int a=userService.register(user);
-//        if(a>0)
-//            result.setMsg(String.valueOf(true));
-//        else result.setMsg(String.valueOf(false));
-//
-//        return result;
-//    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @RequestMapping(value = "/userList", method = RequestMethod.POST)
     public ResponseResult getAllUser() {
         ResponseResult result=new ResponseResult();
@@ -66,4 +33,15 @@ public class UserController {
         else result.setMsg(String.valueOf(false));
         return result;
     }
+
+    @RequestMapping(value = "/umodifyUser", method = RequestMethod.POST)
+    public ResponseResult umodifyUser(User user){
+        ResponseResult result=new ResponseResult();
+        if(userService.umodifyUser(user)>0)
+            result.setMsg("修改成功");
+        else result.setMsg("修改失败");
+
+        return result;
+    }
+
 }

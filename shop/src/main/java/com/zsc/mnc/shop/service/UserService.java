@@ -11,5 +11,6 @@ public interface UserService {
     int addUser(User user);
     User queryUserByName(String username);
     User queryUser(String username,String password);
+    int umodifyUser(User user);
 
 }
