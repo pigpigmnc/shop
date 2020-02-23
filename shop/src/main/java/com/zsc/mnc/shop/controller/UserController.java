@@ -37,11 +37,12 @@ public class UserController {
     @RequestMapping(value = "/umodifyUser", method = RequestMethod.POST)
     public ResponseResult umodifyUser(User user){
         ResponseResult result=new ResponseResult();
-        if(userService.umodifyUser(user)>0)
+        int a=userService.umodifyUser(user);
+        if(userService.queryUserByName(user.getUsername()) ==null)
             result.setMsg("修改成功");
-        else result.setMsg("修改失败");
-
+        else result.setMsg("修改失败，用户名已存在");
         return result;
     }
+
 
 }
