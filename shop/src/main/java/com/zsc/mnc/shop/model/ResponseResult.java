@@ -11,7 +11,7 @@ public class ResponseResult implements Serializable {
      * true表示成功请求到数据
      * false表示请求不到数据
      */
-    private Boolean msg;
+    private String msg;
 
     /**
      * 把真正的数据set进data里头

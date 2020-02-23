@@ -26,10 +26,10 @@ public class ProductController {
         product.setCreateDate(new Date());
         int a=productService.addProduct(product);
         if(a>0) {
-            result.setMsg(true);
+            result.setMsg(String.valueOf(true));
             result.setTotal((long) a);
         }
-        else result.setMsg(false);
+        else result.setMsg(String.valueOf(false));
 
 //        List<Product> list=new ArrayList<>();
 //        list=productService.getAllProduct();
@@ -45,11 +45,11 @@ public class ProductController {
         List<Product> list=new ArrayList<>();
         list=productService.getAllProduct();
         if(list.size()>0){
-            result.setMsg(true);
+            result.setMsg(String.valueOf(true));
             result.setTotal((long)list.size());
             result.setData(list);
         }
-        else result.setMsg(false);
+        else result.setMsg(String.valueOf(false));
 
         return result;
 
@@ -61,10 +61,10 @@ public class ProductController {
         ResponseResult result=new ResponseResult();
         int a=productService.modifyProduct(product);
         if(a>0) {
-            result.setMsg(true);
+            result.setMsg(String.valueOf(true));
             result.setTotal((long) a);
         }
-        else result.setMsg(false);
+        else result.setMsg(String.valueOf(false));
         return result;
 
     }
@@ -76,11 +76,11 @@ public class ProductController {
         List<Product> list=new ArrayList<>();
         list=productService.fuzzyQuery(name);
         if(list.size()>0){
-            result.setMsg(true);
+            result.setMsg(String.valueOf(true));
             result.setTotal((long)list.size());
             result.setData(list);
         }
-        else result.setMsg(false);
+        else result.setMsg(String.valueOf(false));
 
         return result;
 
@@ -92,11 +92,11 @@ public class ProductController {
         ResponseResult result=new ResponseResult();
         int a=productService.deleteProduct(id);
         if(a>0){
-            result.setMsg(true);
+            result.setMsg(String.valueOf(true));
 
             result.setTotal((long) a);
         }
-        else result.setMsg(false);
+        else result.setMsg(String.valueOf(false));
 
         return result;
     }

@@ -9,7 +9,7 @@ import java.util.Date;
 //这个类是对应数据库中的user表
 public class User implements Serializable {
     private Long id;
-    private String userName;
+    private String username;
     private String password;
     private String phone;
     private String address;

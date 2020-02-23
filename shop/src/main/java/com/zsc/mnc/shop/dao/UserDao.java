@@ -12,4 +12,8 @@ public interface UserDao {
     // 之前我说是userId对应xml文件中的#{xxxx}是错误的
     User findUserById(@Param("id") Long userId);
     List<User> getAllUsers();
+    int addUser(User user);
+    User queryUserByName(String username);
+    User queryUser(String username,String password);
+
 }

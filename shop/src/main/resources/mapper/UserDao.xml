@@ -18,5 +18,20 @@
         select *from `users`;
     </select>
 
+    <insert id="addUser" parameterType="com.zsc.mnc.shop.model.User">
+        insert into users (username,password,phone,address,email,status,role,registerDate) value
+        (#{username},#{password},#{phone},#{address},#{email},#{status},#{role},#{registerDate});
+    </insert>
+
+    <select id="queryUserByName" resultType="com.zsc.mnc.shop.model.User">
+        select * from users where username=#{username};
+    </select>
+
+    <select id="queryUser" resultType="com.zsc.mnc.shop.model.User">
+        select * from users where username=#{username} and password=#{password}
+    </select>
+
+
+
 
 </mapper>
