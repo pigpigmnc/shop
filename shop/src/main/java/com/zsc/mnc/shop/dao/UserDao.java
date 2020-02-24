@@ -15,6 +15,8 @@ public interface UserDao {
     int addUser(User user);
     User queryUserByName(String username);
     User queryUser(String username,String password);
-    int umodifyUser(User user);
+    int modifyUser(User user);
+    int deleteUser(long id);
+    List<User> queryUserByStatus(int status);
 
 }

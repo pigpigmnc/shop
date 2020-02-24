@@ -36,8 +36,17 @@ public class UserServiceImpl implements UserService {
         return userDao.queryUser(username,password);
     }
 
-    public int umodifyUser(User user){
-        return userDao.umodifyUser(user);
+    public int modifyUser(User user){
+        return userDao.modifyUser(user);
+    }
+
+    public int deleteUser(long id){
+        return userDao.deleteUser(id);
+    }
+
+
+    public List<User> queryUserByStatus(int status){
+        return userDao.queryUserByStatus(status);
     }
 
 

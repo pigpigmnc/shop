@@ -80,7 +80,9 @@ public class ProductController {
             result.setTotal((long)list.size());
             result.setData(list);
         }
-        else result.setMsg(String.valueOf(false));
+        else {result.setMsg(String.valueOf(false));
+              result.setTotal((long) 0);
+        }
 
         return result;
 

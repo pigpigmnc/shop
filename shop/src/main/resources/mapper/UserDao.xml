@@ -31,10 +31,18 @@
         select * from users where username=#{username} and password=#{password}
     </select>
 
-    <update id="umodifyUser" parameterType="com.zsc.mnc.shop.model.User">
-        update users set username=#{username} , password=#{password} ,
-        phone=#{phone} , address=#{address} , email=#{email} where id=#{id}
+    <update id="modifyUser" parameterType="com.zsc.mnc.shop.model.User">
+        update users set username=#{username}, password=#{password},
+        phone=#{phone}, address=#{address}, email=#{email}, status=#{status}, role=#{role} where id=#{id}
     </update>
+
+    <delete id="deleteUser">
+            delete from users where id=#{id};
+    </delete>
+
+    <select id="queryUserByStatus" resultType="com.zsc.mnc.shop.model.User">
+        select * from users where status=#{status}
+    </select>
 
 
 
