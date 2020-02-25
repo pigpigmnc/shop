@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,7 +24,7 @@ public class ProductController {
     private ProductService productService;
 
     @RequestMapping(value = "/addProduct",method = RequestMethod.POST)
-    public ResponseResult addProduct(Product product){
+    public ResponseResult addProduct(Product product) throws ParseException {
         ResponseResult result = new ResponseResult();
         product.setCreateDate(new Date());
         int a=productService.addProduct(product);
