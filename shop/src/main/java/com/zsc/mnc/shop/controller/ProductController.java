@@ -20,6 +20,7 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+
     @RequestMapping(value = "/addProduct",method = RequestMethod.POST)
     public ResponseResult addProduct(Product product){
         ResponseResult result = new ResponseResult();

@@ -5,4 +5,30 @@
 <!--这里的namespace一定要写对应的mapper类的全名-->
 <mapper namespace="com.zsc.mnc.shop.dao.CartDao">
 
+    <select id="queryCartByUidAndPid" resultType="com.zsc.mnc.shop.model.Cart">
+        select * from cart where uid=#{uid} and pid=#{pid}
+    </select>
+
+    <select id="queryCartListByUid" resultType="com.zsc.mnc.shop.model.Cart">
+        select * from cart where uid=#{uid}
+    </select>
+
+    <insert id="addCart" parameterType="com.zsc.mnc.shop.model.Cart">
+        insert into cart (uid,pid,fileurlpath,pname,simplePrice,`count`,totalPrice)
+        values (#{uid},#{pid},#{fileurlpath},#{pname},#{simplePrice},#{count},#{totalPrice})
+    </insert>
+
+    <delete id="deleteCart">
+        delete from cart where id=#{id}
+    </delete>
+
+    <select id="queryCartById" resultType="com.zsc.mnc.shop.model.Cart">
+        select * from cart where id=#{id}
+    </select>
+
+
+
+
+
+
 </mapper>

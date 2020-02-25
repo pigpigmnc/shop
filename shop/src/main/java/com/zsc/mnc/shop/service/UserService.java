@@ -1,5 +1,6 @@
 package com.zsc.mnc.shop.service;
 
+import com.zsc.mnc.shop.model.Cart;
 import com.zsc.mnc.shop.model.User;
 
 import java.util.List;
@@ -14,5 +15,6 @@ public interface UserService {
     int modifyUser(User user);
     int deleteUser(long id);
     List<User> queryUserByStatus(int status);
+
 
 }
