@@ -1,6 +1,7 @@
 package com.zsc.mnc.shop.service.Impl;
 
 import com.zsc.mnc.shop.dao.ProductDao;
+import com.zsc.mnc.shop.model.Category;
 import com.zsc.mnc.shop.model.Product;
 import com.zsc.mnc.shop.service.ProductService;
 import org.springframework.stereotype.Service;
@@ -34,4 +35,15 @@ public class ProductServiceImpl implements ProductService {
     public int deleteProduct(long id){
         return productDao.deleteProduct(id);
     }
+
+    public int addCategory(Category category){
+        return productDao.addCategory(category);
+    }
+
+    public List<Category> categoryList(){
+        return productDao.categoryList();
+    }
+
+
+
 }

@@ -37,7 +37,7 @@
     </update>
 
     <delete id="deleteUser">
-            delete from users where id=#{id};
+         delete from users where id=#{id};
     </delete>
 
     <select id="queryUserByStatus" resultType="com.zsc.mnc.shop.model.User">

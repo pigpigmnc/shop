@@ -6,26 +6,33 @@
 <mapper namespace="com.zsc.mnc.shop.dao.ProductDao">
 
     <insert id="addProduct" parameterType="com.zsc.mnc.shop.model.Product">
-            insert into `product`(`name`,subTitle,originalPrice,promotePrice,stock,cid,createDate,saleCount) values
+        insert into `product`(`name`,subTitle,originalPrice,promotePrice,stock,cid,createDate,saleCount) values
           (#{name},#{subTitle},#{originalPrice},#{promotePrice},#{stock},#{cid},#{createDate},#{saleCount})
     </insert>
 
+    <insert id="addCategory" parameterType="com.zsc.mnc.shop.model.Category">
+        insert into category `name` value #{name}
+    </insert>
+
+    <select id="categoryList" resultType="com.zsc.mnc.shop.model.Category">
+        select *from category
+    </select>
+
     <select id="getAllProduct" resultType="com.zsc.mnc.shop.model.Product">
-            select *from `product`;
+        select *from `product`;
     </select>
 
     <update id="modifyProduct" parameterType="com.zsc.mnc.shop.model.Product">
-            update `product` set`name`=#{name},subTitle=#{subTitle},originalPrice=#{originalPrice},promotePrice=#{promotePrice},
-            stock=#{stock},saleCount=#{saleCount} where id=#{id}
-
+        update `product` set`name`=#{name},subTitle=#{subTitle},originalPrice=#{originalPrice},promotePrice=#{promotePrice},
+        stock=#{stock},saleCount=#{saleCount} where id=#{id}
     </update>
 
     <select id="fuzzyQuery" resultType="com.zsc.mnc.shop.model.Product">
-            select *from product where name like "%"#{name}"%"
+        select *from product where name like "%"#{name}"%"
     </select>
 
     <delete id="deleteProduct">
-            delete from product where id=#{id};
+        delete from product where id=#{id};
     </delete>
 
 

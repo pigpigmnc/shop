@@ -1,5 +1,6 @@
 package com.zsc.mnc.shop.controller;
 
+import com.zsc.mnc.shop.model.Category;
 import com.zsc.mnc.shop.model.Product;
 import com.zsc.mnc.shop.model.ResponseResult;
 import com.zsc.mnc.shop.service.ProductService;
@@ -103,6 +104,31 @@ public class ProductController {
         }
         else result.setMsg(String.valueOf(false));
 
+        return result;
+    }
+
+    //添加鲜花种类，如玫瑰等
+    @RequestMapping(value = "/addCategory",method = RequestMethod.POST)
+    public ResponseResult addCategory(Category category){
+        ResponseResult result=new ResponseResult();
+        if(productService.addCategory(category)>0)
+            result.setMsg("添加成功");
+        else result.setMsg("添加失败");
+        return result;
+    }
+
+    //鲜花种类list
+    @RequestMapping(value = "/categoryList",method = RequestMethod.POST)
+    public ResponseResult categoryList(){
+        ResponseResult result=new ResponseResult();
+        List<Category> list=productService.categoryList();
+        if(list.size()>0){
+            result.setMsg("查询成功");
+            result.setData(list);
+            result.setTotal((long)list.size());
+        }else {
+            result.setMsg("查询失败");
+        }
         return result;
     }
 
