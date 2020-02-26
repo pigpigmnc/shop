@@ -11,7 +11,7 @@
     </insert>
 
     <insert id="addCategory" parameterType="com.zsc.mnc.shop.model.Category">
-        insert into category `name` value #{name}
+        insert into category (`name`) value (#{name})
     </insert>
 
     <select id="categoryList" resultType="com.zsc.mnc.shop.model.Category">
