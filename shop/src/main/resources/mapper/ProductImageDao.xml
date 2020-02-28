@@ -4,5 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--这里的namespace一定要写对应的mapper类的全名-->
 <mapper namespace="com.zsc.mnc.shop.dao.ProductImageDao">
+    
+    <insert id="addProductImage" parameterType="com.zsc.mnc.shop.model.ProductImage">
+        insert into productimage (pid,filename,fileurlpath)
+        values (#{pid},#{filename},#{fileurlpath})
+    </insert>
+    
+    <select id="queryPicListByPid" resultType="String">
+        select fileurlpath from productimage where pid=#{pid}
+    </select>
 
 </mapper>

@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver #这个是连接数据库的驱动名称
-    url: jdbc:mysql://localhost:3306/small2?setUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/small2?setUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: root  #数据库账号
     password: "961209miao" #数据库密码,最好用双引号包裹着,不然特殊字符无法识别
 

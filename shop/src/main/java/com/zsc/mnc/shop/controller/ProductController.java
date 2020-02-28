@@ -25,7 +25,7 @@ public class ProductController {
     private ProductService productService;
 
     @RequestMapping(value = "/addProduct",method = RequestMethod.POST)
-    public ResponseResult addProduct(Product product) throws ParseException {
+    public ResponseResult addProduct(Product product){
         ResponseResult result = new ResponseResult();
         product.setCreateDate(new Date());
         int a=productService.addProduct(product);
