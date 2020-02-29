@@ -2,6 +2,8 @@ package com.zsc.mnc.shop.dao;
 
 import com.zsc.mnc.shop.model.Category;
 import com.zsc.mnc.shop.model.Product;
+import com.zsc.mnc.shop.model.ProductImage;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -17,4 +19,6 @@ public interface ProductDao {
     int addCategory(Category category);
     List<Category> categoryList();
 
+    //这里的意思就是把productImageList换成list，让xml文件去识别
+    int insertProductImages(@Param("list") List<ProductImage> productImageList);
 }

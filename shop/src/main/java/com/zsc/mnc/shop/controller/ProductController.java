@@ -1,21 +1,21 @@
 package com.zsc.mnc.shop.controller;
 
-import com.zsc.mnc.shop.model.Category;
-import com.zsc.mnc.shop.model.Product;
-import com.zsc.mnc.shop.model.ResponseResult;
+import com.zsc.mnc.shop.model.*;
 import com.zsc.mnc.shop.service.ProductService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/product")
@@ -133,7 +133,71 @@ public class ProductController {
     }
 
 
+    @RequestMapping("/uploadPictures")
+//    public ResponseImageUrl uploadPictures(@RequestParam("file") CommonsMultipartFile file) {
+    public ResponseResult uploadPictures(@RequestParam("pid")long pid,
+                                         @RequestParam("files") MultipartFile[] files) {
+        ResponseResult result = new ResponseResult();
+        int n=0;
+        String fileName,fileUrlPath;
 
+        List<ProductImage> imageList = new ArrayList<>();
+        //判断文件是否为空
+        if(files.length!=0){
+            for (MultipartFile file:files) {
+                String uuid = UUID.randomUUID().toString().trim();
+                String fileN=file.getOriginalFilename();
+                int index=fileN.indexOf(".");
+                fileName=uuid+fileN.substring(index);
+                File fileMkdir;
+                try {
+//            fileMkdir=new File("F:\\mall-images");
+                    fileMkdir=new File("F:\\apache-tomcat-9.0.14dir\\webapps\\ROOT\\mall-images");
+
+                    if(!fileMkdir.exists()) {
+                        fileMkdir.mkdir();
+                    }
+                    //定义输出流 将文件保存在F盘    file.getOriginalFilename()为获得文件的名字
+                    FileOutputStream os = new FileOutputStream(fileMkdir.getPath()+"\\"+fileName);
+                    InputStream in = file.getInputStream();
+                    int b;
+                    while((b=in.read())!=-1){ //读取文件
+                        os.write(b);
+                    }
+                    os.flush(); //关闭流
+                    in.close();
+                    os.close();
+                    System.out.println(fileMkdir.toString());
+                } catch (Exception e) {
+                    result.setMsg("上传失败");
+                    return result;
+                }
+                //访问路径为http://localhost:8081/+fileurlpath
+                fileUrlPath="mall-images/"+fileName;
+                ProductImage productImage=new ProductImage();
+                productImage.setPid(pid);
+                productImage.setFilename(fileName);
+                productImage.setFileUrlPath(fileUrlPath);
+//                //把它放到一个列表里头，一次性批量插入
+                imageList.add(productImage);
+
+            }
+            n=productService.insertProductImages(imageList);
+            if(n>0){
+                result.setMsg("上传成功！");
+                result.setData(imageList);
+                result.setTotal(Long.valueOf(n));
+                return result;
+            }
+            else{
+                result.setMsg("上传失败");
+                return result;
+            }
+        }else{
+            result.setMsg("上传文件为空");
+            return result;
+        }
+    }
 
 
 

@@ -35,6 +35,16 @@
         delete from product where id=#{id};
     </delete>
 
-
+    <!--foreach表示的是一个循环，collection表示入参的列表名字，item表示列表里对象名称，
+    这两个都是自定义的，只是list要跟mapper类对应，然后separator表示吗，每个循环之间
+    用,分割，最后一个循环会自动把,去掉的，item就表示列表中的ProductImage对象，item.pid
+    表示对象的pid属性，这个pid一定要对应ProductImage中的字段名！！！-->
+    <insert id="insertProductImages" parameterType="com.zsc.mnc.shop.model.ProductImage">
+        insert into productimage (pid,filename,fileurlpath)
+        values
+         <foreach collection="list" item="item" index="index" separator=",">
+             (#{item.pid},#{item.filename},#{item.fileUrlPath})
+         </foreach>
+    </insert>
 
 </mapper>

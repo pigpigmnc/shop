@@ -3,6 +3,7 @@ package com.zsc.mnc.shop.service.Impl;
 import com.zsc.mnc.shop.dao.ProductDao;
 import com.zsc.mnc.shop.model.Category;
 import com.zsc.mnc.shop.model.Product;
+import com.zsc.mnc.shop.model.ProductImage;
 import com.zsc.mnc.shop.service.ProductService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,6 +45,10 @@ public class ProductServiceImpl implements ProductService {
         return productDao.categoryList();
     }
 
+    @Override
+    public int insertProductImages(List<ProductImage> productImageList) {
+        return productDao.insertProductImages(productImageList);
+    }
 
 
 }
