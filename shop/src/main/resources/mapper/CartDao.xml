@@ -18,6 +18,10 @@
         values (#{uid},#{pid},#{fileurlpath},#{pname},#{simplePrice},#{count},#{totalPrice})
     </insert>
 
+    <update id="updateCart" parameterType="com.zsc.mnc.shop.model.Cart">
+        update cart set `count`=#{count},totalPrice=#{totalPrice}
+    </update>
+
     <delete id="deleteCart">
         delete from cart where id=#{id}
     </delete>

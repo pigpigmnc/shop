@@ -1,6 +1,7 @@
 package com.zsc.mnc.shop.controller;
 
 import com.zsc.mnc.shop.model.Cart;
+import com.zsc.mnc.shop.model.Product;
 import com.zsc.mnc.shop.model.ResponseResult;
 import com.zsc.mnc.shop.service.CartService;
 import com.zsc.mnc.shop.service.ProductImageService;
@@ -39,6 +40,24 @@ public class CartController {
             cartService.updateCart(oldCart);
             n=1;
         }
+        else{
+            //根据商品ID找到商品的图片路径，商品名称，商品单价
+            Product product=productService.queryProductById(pid);
+            List<String> productImageList=productImageService.queryPicListByPid(pid);
+            Cart cart=new Cart();
+            cart.setUid(uid);
+            cart.setPid(pid);
+            cart.setFileUrlPath(productImageList.get(0));
+            cart.setPname(product.getName());
+            cart.setSimplePrice(product.getPromotePrice());
+            cart.setCount(count);
+            cart.setTotalPrice(count*product.getPromotePrice());
+            n=cartService.addCart(cart);
+        }
+        if(n==1)
+            result.setMsg("添加成功");
+        else
+            result.setMsg("添加失败");
 
         return result;
     }

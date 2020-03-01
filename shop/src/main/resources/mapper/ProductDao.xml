@@ -10,6 +10,10 @@
           (#{name},#{subTitle},#{originalPrice},#{promotePrice},#{stock},#{cid},#{createDate},#{saleCount})
     </insert>
 
+    <select id="queryProductById" resultType="com.zsc.mnc.shop.model.Product">
+        select * from product where id=#{id}
+    </select>
+
     <insert id="addCategory" parameterType="com.zsc.mnc.shop.model.Category">
         insert into category (`name`) value (#{name})
     </insert>

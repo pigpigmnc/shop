@@ -12,6 +12,7 @@ import java.util.List;
 @Component
 public interface ProductDao {
     int addProduct(Product product);
+    Product queryProductById(long id);
     List<Product> getAllProduct();
     int modifyProduct(Product product);
     List<Product> fuzzyQuery(String name);

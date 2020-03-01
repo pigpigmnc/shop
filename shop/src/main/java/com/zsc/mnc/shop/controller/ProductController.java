@@ -1,6 +1,7 @@
 package com.zsc.mnc.shop.controller;
 
 import com.zsc.mnc.shop.model.*;
+import com.zsc.mnc.shop.service.ProductImageService;
 import com.zsc.mnc.shop.service.ProductService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+    @Autowired
+    private ProductImageService productImageService;
 
     @RequestMapping(value = "/addProduct",method = RequestMethod.POST)
     public ResponseResult addProduct(Product product){
@@ -197,6 +200,22 @@ public class ProductController {
             result.setMsg("上传文件为空");
             return result;
         }
+    }
+
+    @RequestMapping(value = "/picList",method = RequestMethod.POST)
+    public ResponseResult queryPicListByPid(long pid){
+        ResponseResult result=new ResponseResult();
+        List<String> list=productImageService.queryPicListByPid(pid);
+        if(list.size()>0){
+            result.setTotal((long)list.size());
+            result.setData(list);
+            result.setMsg("查询成功");
+        }else {
+            result.setMsg("查询失败");
+            result.setData("暂无图片");
+            result.setTotal((long)0);
+        }
+        return result;
     }
 
 
