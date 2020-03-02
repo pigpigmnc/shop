@@ -13,9 +13,10 @@
         select * from cart where uid=#{uid}
     </select>
 
+    <!--这里我上次已经强调过了,#{xxx}这里面的xxx一定要对应实体类中的字段名称,一定要一模一样-->
     <insert id="addCart" parameterType="com.zsc.mnc.shop.model.Cart">
         insert into cart (uid,pid,fileurlpath,pname,simplePrice,`count`,totalPrice)
-        values (#{uid},#{pid},#{fileurlpath},#{pname},#{simplePrice},#{count},#{totalPrice})
+        values (#{uid},#{pid},#{fileUrlPath},#{pname},#{simplePrice},#{count},#{totalPrice})
     </insert>
 
     <update id="updateCart" parameterType="com.zsc.mnc.shop.model.Cart">
