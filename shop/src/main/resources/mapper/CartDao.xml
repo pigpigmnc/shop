@@ -20,7 +20,7 @@
     </insert>
 
     <update id="updateCart" parameterType="com.zsc.mnc.shop.model.Cart">
-        update cart set `count`=#{count},totalPrice=#{totalPrice}
+        update cart set `count`=#{count},totalPrice=#{totalPrice} where pid=#{pid}
     </update>
 
     <delete id="deleteCart">

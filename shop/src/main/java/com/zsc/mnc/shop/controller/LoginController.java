@@ -73,8 +73,8 @@ public class LoginController {
 
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseResult register(@RequestParam("username")String username,@RequestParam("password")String password,
-                                  @RequestParam("phone")String phone,@RequestParam("email")String email)
+    public ResponseResult register(@RequestParam("姓名")String username,@RequestParam("密码")String password,
+                                  @RequestParam("电话")String phone,@RequestParam("邮箱")String email)
     {
         try{
             User users=userService.queryUserByName(username);

@@ -37,7 +37,9 @@ public class CartController {
             long oldCount=oldCart.getCount();
             long newCount=oldCount+count;
             oldCart.setCount((int) newCount);
+            oldCart.setTotalPrice(oldCart.getCount()*oldCart.getSimplePrice());
             cartService.updateCart(oldCart);
+            result.setMsg("添加成功");
             n=1;
         }
         else{
@@ -53,11 +55,12 @@ public class CartController {
             cart.setCount(count);
             cart.setTotalPrice(count*product.getPromotePrice());
             n=cartService.addCart(cart);
-        }
+
         if(n==1)
             result.setMsg("添加成功");
         else
             result.setMsg("添加失败");
+        }
 
         return result;
     }

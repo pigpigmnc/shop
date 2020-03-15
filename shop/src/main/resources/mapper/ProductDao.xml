@@ -51,4 +51,26 @@
          </foreach>
     </insert>
 
+
+    <select id="ProductDetails" resultType="com.zsc.mnc.shop.model.ProductDetails">
+        SELECT
+product.name,
+product.originalPrice,
+product.id,
+product.subTitle,
+product.promotePrice,
+product.cid,
+product.stock,
+product.createDate,
+product.saleCount,
+productimage.id,
+productimage.pid,
+productimage.fileUrlPath
+FROM
+product ,
+productimage
+WHERE
+product.id =  productimage.pid
+    </select>
+
 </mapper>

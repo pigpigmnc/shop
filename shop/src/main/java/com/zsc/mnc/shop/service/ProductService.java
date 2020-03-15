@@ -2,6 +2,7 @@ package com.zsc.mnc.shop.service;
 
 import com.zsc.mnc.shop.model.Category;
 import com.zsc.mnc.shop.model.Product;
+import com.zsc.mnc.shop.model.ProductDetails;
 import com.zsc.mnc.shop.model.ProductImage;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,4 +19,5 @@ public interface ProductService {
     int addCategory(Category category);
     List<Category> categoryList();
     int insertProductImages(List<ProductImage> productImageList);
+    List<ProductDetails> ProductDetails(long id);
 }

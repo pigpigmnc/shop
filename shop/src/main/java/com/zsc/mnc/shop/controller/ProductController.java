@@ -154,13 +154,13 @@ public class ProductController {
                 fileName=uuid+fileN.substring(index);
                 File fileMkdir;
                 try {
-//            fileMkdir=new File("F:\\mall-images");
-                    fileMkdir=new File("F:\\apache-tomcat-9.0.14dir\\webapps\\ROOT\\mall-images");
+//            fileMkdir=new File("D:\\mall-images");
+                    fileMkdir=new File("D:\\Program Files\\Tomcat 8.5\\webapps\\ROOT\\mall-images");
 
                     if(!fileMkdir.exists()) {
                         fileMkdir.mkdir();
                     }
-                    //定义输出流 将文件保存在F盘    file.getOriginalFilename()为获得文件的名字
+                    //定义输出流 将文件保存在D盘    file.getOriginalFilename()为获得文件的名字
                     FileOutputStream os = new FileOutputStream(fileMkdir.getPath()+"\\"+fileName);
                     InputStream in = file.getInputStream();
                     int b;
@@ -217,6 +217,47 @@ public class ProductController {
         }
         return result;
     }
+
+
+
+
+    @RequestMapping(value = "/productDetails",method = RequestMethod.POST)
+    public ResponseResult productDetails(long id){
+        ResponseResult result=new ResponseResult();
+        Product product=productService.queryProductById(id);
+        if(product!=null){
+        List<String> productImageList=productImageService.queryPicListByPid(product.getId());
+        ProductDetails productDetails=new ProductDetails();
+        productDetails.setId(product.getId());
+        productDetails.setName(product.getName());
+        productDetails.setSubTitle(product.getSubTitle());
+        productDetails.setOriginalPrice(product.getOriginalPrice());
+        productDetails.setPromotePrice(product.getPromotePrice());
+        productDetails.setStock(product.getStock());
+        productDetails.setCid(product.getCid());
+        productDetails.setSaleCount(product.getSaleCount());
+        productDetails.setCreateDate(product.getCreateDate());
+        productDetails.setFileUrlPath(productImageList);
+        result.setData(productDetails);
+        result.setMsg("查询成功");
+        }else {
+            result.setMsg("查询失败，该商品不存在");
+        }
+        return result;
+    }
+
+//    @RequestMapping(value = "/productDetails",method = RequestMethod.POST)
+//    public ResponseResult productDetails(long id){
+//        ResponseResult result=new ResponseResult();
+//        List<ProductDetails> list=productService.ProductDetails(id);
+//        if(list.size()>0){
+//            result.setMsg("查询成功");
+//            result.setData(list);
+//        }else {
+//            result.setMsg("查询失败");
+//        }
+//        return result;
+//    }
 
 
 
