@@ -73,4 +73,23 @@ WHERE
 product.id =  productimage.pid
     </select>
 
+    <!--这个resultMap是为了应对Product实体类和数据库中product表的字段名称不一致的情况-->
+    <!--column指的是数据库表的字段名,property指的是实体类的属性名称,jdbcType指的是数据库表中字段的类型,一般为全大写-->
+    <!--数据库存储的是DATETIME的类型，并且准确显示到年月日时分秒，对应的是TIMESTAMP -->
+    <resultMap id="ProductDetailMap" type="com.zsc.mnc.shop.model.Product">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="originalPrice" property="originalPrice" jdbcType="FLOAT"/>
+        <result column="subTitle" property="subTitle" jdbcType="VARCHAR"/>
+        <result column="promotePrice" property="promotePrice" jdbcType="FLOAT"/>
+        <result column="cid" property="cid" jdbcType="BIGINT"/>
+        <result column="stock" property="stock" jdbcType="BIGINT"/>
+        <result column="createDate" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="saleCount" property="saleCount" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <select id="getProductDetailById" resultMap="ProductDetailMap">
+        SELECT * FROM PRODUCT WHERE id = #{id}
+    </select>
+
 </mapper>

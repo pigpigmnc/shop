@@ -24,4 +24,6 @@ public interface ProductDao {
 
     //这里的意思就是把productImageList换成list，让xml文件去识别
     int insertProductImages(@Param("list") List<ProductImage> productImageList);
+
+    Product getProductDetailById(long id);
 }

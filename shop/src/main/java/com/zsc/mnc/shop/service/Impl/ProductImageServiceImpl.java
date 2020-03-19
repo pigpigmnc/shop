@@ -15,26 +15,12 @@ public class ProductImageServiceImpl implements ProductImageService {
     @Autowired
     private ProductImageDao productImageDao;
 
-    public int addProductImage(ProductImage productImage){
+    public int addProductImage(ProductImage productImage) {
         return productImageDao.addProductImage(productImage);
     }
 
 
-    public List<String> queryPicListByPid(long pid){
+    public List<String> queryPicListByPid(long pid) {
         return productImageDao.queryPicListByPid(pid);
     }
-
-
-    public List<String> queryProductImageUrlById(long id){
-        return productImageDao.queryProductImageUrlById(id);
-    }
-
-
-
-
-
-
-
-
-
 }

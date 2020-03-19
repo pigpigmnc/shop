@@ -20,4 +20,6 @@ public interface ProductService {
     List<Category> categoryList();
     int insertProductImages(List<ProductImage> productImageList);
     List<ProductDetails> ProductDetails(long id);
+
+    ProductDetails getProductDetailById(long id);
 }

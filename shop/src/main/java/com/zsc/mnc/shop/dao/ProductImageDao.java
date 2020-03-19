@@ -9,5 +9,4 @@ import java.util.List;
 public interface ProductImageDao {
     int addProductImage(ProductImage productImage);
     List<String> queryPicListByPid(long pid);
-    List<String> queryProductImageUrlById(long id);
 }

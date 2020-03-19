@@ -224,20 +224,8 @@ public class ProductController {
     @RequestMapping(value = "/productDetails",method = RequestMethod.POST)
     public ResponseResult productDetails(long id){
         ResponseResult result=new ResponseResult();
-        Product product=productService.queryProductById(id);
-        if(product!=null){
-        List<String> productImageList=productImageService.queryPicListByPid(product.getId());
-        ProductDetails productDetails=new ProductDetails();
-        productDetails.setId(product.getId());
-        productDetails.setName(product.getName());
-        productDetails.setSubTitle(product.getSubTitle());
-        productDetails.setOriginalPrice(product.getOriginalPrice());
-        productDetails.setPromotePrice(product.getPromotePrice());
-        productDetails.setStock(product.getStock());
-        productDetails.setCid(product.getCid());
-        productDetails.setSaleCount(product.getSaleCount());
-        productDetails.setCreateDate(product.getCreateDate());
-        productDetails.setFileUrlPath(productImageList);
+        ProductDetails productDetails = productService.getProductDetailById(id);
+        if(productDetails!=null){
         result.setData(productDetails);
         result.setMsg("查询成功");
         }else {
