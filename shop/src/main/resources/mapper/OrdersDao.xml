@@ -4,5 +4,94 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--这里的namespace一定要写对应的mapper类的全名-->
 <mapper namespace="com.zsc.mnc.shop.dao.OrderDao">
+    <insert id="addOrder" parameterType="com.zsc.mnc.shop.model.Orders">
+        insert into orders (orderCode,address,post,receiver,mobile,
+        userMessage,createDate,payDate,deliveryDate,confirmDate,uid,status)
+        values (#{orderCode},#{address},#{post},#{receiver},#{mobile},
+        #{userMessage},#{createDate},#{payDate},#{deliveryDate},#{confirmDate},#{uid},#{status})
+    </insert>
+
+    <select id="queryOrderByDate" parameterType="String" resultType="Long">
+        select id from orders where createDate=#{createDate}
+    </select>
+
+    <select id="queryOrderPrice" parameterType="Long" resultType="Float">
+        select sum(totalPrice) from orderitem where oid =#{oid}
+    </select>
+
+    <update id="updateOrderPrice">
+        update orders set orderPrice=#{orderPrice} where id=#{id}
+    </update>
+
+    <select id="queryOrderListByUid" resultType="com.zsc.mnc.shop.model.Orders">
+        select * from orders where uid=#{uid}
+    </select>
+
+    <select id="getAllOrderList" resultType="com.zsc.mnc.shop.model.Orders">
+        select * from orders
+    </select>
+
+    <select id="selectOrderItemDetail" resultType="com.zsc.mnc.shop.model.OrderItemDetail">
+        SELECT
+            orders.orderCode,
+            orderitem.number,
+            orderitem.simplePrice,
+            orderitem.totalPrice,
+            product.name
+        FROM
+            orders ,
+            orderitem ,
+            product
+        WHERE
+            orders.uid =  #{uid} AND
+            orders.id =  #{id} AND
+            orderitem.oid=#{id} AND
+            orderitem.pid =  product.id
+        GROUP BY
+            product.name
+    </select>
+
+    <select id="selectOrderOtherDetail" resultType="com.zsc.mnc.shop.model.OrderOtherDetail">
+        SELECT
+            orders.orderCode,
+            orders.address,
+            orders.receiver,
+            orders.mobile,
+            orders.userMessage,
+            orders.orderPrice,
+            orders.createDate
+        FROM
+            orders ,
+            orderitem ,
+            product
+        WHERE
+            orders.uid = #{uid} AND
+            orders.id = #{id} AND
+            orderitem.pid =  product.id
+        GROUP BY
+            orders.createDate
+    </select>
+
+    <select id="selectOrderByOrderCode" resultType="com.zsc.mnc.shop.model.Orders">
+        select * from orders where orderCode=#{orderCode}
+    </select>
+
+    <select id="selectOrderByUIdAndCode" resultType="com.zsc.mnc.shop.model.Orders">
+        select * from orders where orderCode=#{orderCode}
+    </select>
+
+    <update id="selectUpdateOrderStatus">
+        update orders set status=#{status},confirmDate=#{confirmDate}
+        where orderCode=#{orderCode}
+    </update>
+
+    <update id="selectUpdateOrder">
+        update orders set status=#{status},deliveryDate=#{deliveryDate},post=#{post}
+        where orderCode=#{orderCode}
+    </update>
+
+
+
+
 
 </mapper>

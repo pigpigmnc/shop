@@ -92,4 +92,12 @@ product.id =  productimage.pid
         SELECT * FROM PRODUCT WHERE id = #{id}
     </select>
 
+    <select id="queryOldStock" resultType="Long">
+        select stock from product where id=#{id}
+    </select>
+
+    <update id="selectUpdateStock">
+        update product set stock=#{stock} where id=#{id}
+    </update>
+
 </mapper>

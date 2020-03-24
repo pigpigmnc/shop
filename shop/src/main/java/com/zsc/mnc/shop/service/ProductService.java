@@ -22,4 +22,8 @@ public interface ProductService {
     List<ProductDetails> ProductDetails(long id);
 
     ProductDetails getProductDetailById(long id);
+    long queryOldStock(long id);
+    int updateStock(long id,long stock);
+    long queryOldSaleCount(long id);
+    int updateSaleCount(long id,long stock);
 }

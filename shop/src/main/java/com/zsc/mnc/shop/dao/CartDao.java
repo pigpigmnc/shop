@@ -13,5 +13,6 @@ public interface CartDao {
     int updateCart(Cart cart);
     int deleteCart(long id);
     Cart queryCartById(long id);
+    void deleteCartByUidAndPid(long uid,long pid);
 
 }

@@ -21,6 +21,11 @@ public interface ProductDao {
     int addCategory(Category category);
     List<Category> categoryList();
     List<ProductDetails> ProductDetails(long id);
+    long queryOldStock(long id);
+    int updateStock(long id,long stock);
+    long queryOldSaleCount(long id);
+    int updateSaleCount(long id,long stock);
+
 
     //这里的意思就是把productImageList换成list，让xml文件去识别
     int insertProductImages(@Param("list") List<ProductImage> productImageList);

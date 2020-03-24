@@ -41,4 +41,11 @@ public class CartServiceImpl implements CartService {
     public Cart queryCartById(long id){
         return cartDao.queryCartById(id);
     }
+
+
+    public void deleteCartByUidAndPid(long uid,long pid){
+        cartDao.deleteCartByUidAndPid(uid,pid);
+    }
+
+
 }

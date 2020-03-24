@@ -76,5 +76,21 @@ public class ProductServiceImpl implements ProductService {
         return productDetails;
     }
 
+    public long queryOldStock(long id){
+        return productDao.queryOldStock(id);
+    }
+
+    public int updateStock(long id,long stock){
+        return productDao.updateStock(id,stock);
+    }
+
+    public long queryOldSaleCount(long id){
+        return productDao.queryOldStock(id);
+    }
+
+    public int updateSaleCount(long id,long stock){
+        return productDao.updateStock(id,stock);
+    }
+
 
 }

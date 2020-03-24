@@ -31,6 +31,10 @@
         select * from cart where id=#{id}
     </select>
 
+    <delete id="deleteCartByUidAndPid">
+        delete from cart where uid=#{uid} and pid=#{pid}
+    </delete>
+
 
 
 
