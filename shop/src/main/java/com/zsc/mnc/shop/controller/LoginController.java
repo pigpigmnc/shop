@@ -4,10 +4,7 @@ import com.zsc.mnc.shop.model.ResponseResult;
 import com.zsc.mnc.shop.model.User;
 import com.zsc.mnc.shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
@@ -40,9 +37,9 @@ public class LoginController {
 
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public ResponseResult login(@RequestParam String username, @RequestParam String password){
+    public ResponseResult login(@RequestBody User param){
         ResponseResult result=new ResponseResult();
-        User user=userService.queryUser(username,password);
+        User user=userService.queryUser(param.getUsername(),param.getPassword());
         if(user==null)
         {
             result.setMsg("用户名或密码错误");
